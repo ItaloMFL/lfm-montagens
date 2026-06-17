@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFM montagens - Montagem de Móveis Profissional</title>
+
+    <!-- ==================== FONTES E ÍCONES ==================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==================== RESET & VARIÁVEIS ==================== */
+        :root {
+            /* Paleta principal: Vermelho + Azul + Branco */
+            --vermelho-principal: #C0392B;
+            --vermelho-claro: #E74C3C;
+            --vermelho-escuro: #922B21;
+            --azul-principal: #1A3C5E;
+            --azul-medio: #2C5F8A;
+            --azul-claro: #3B7DBF;
+            --azul-suave: #5B9BD5;
+            --branco: #FFFFFF;
+            --cinza-claro: #F5F6F8;
+            --cinza-medio: #E8EAED;
+            --cinza-texto: #5A5A5A;
+            --preto-suave: #1E1E1E;
+
+            /* Transições */
+            --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transicao-lenta: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Sombras */
+            --sombra-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --sombra-card-hover: 0 12px 35px rgba(0, 0, 0, 0.15);
+            --sombra-nav: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--preto-suave);
+            background-color: var(--branco);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== TIPOGRAFIA ==================== */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /* ==================== HEADER / NAVBAR ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--branco);
+            box-shadow: var(--sombra-nav);
+            transition: var(--transicao);
+        }
+
+        .header.scrolled {
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            position: relative;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo-icone {
+            width: 45px;
+            height: 45px;
+            background: var(--vermelho-principal);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transicao);
+        }
+
+        .logo:hover .logo-icone {
+            background: var(--vermelho-claro);
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .logo-texto {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--azul-principal);
+            line-height: 1.1;
+        }
+
+        .logo-texto span {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--vermelho-principal);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Links de navegação */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--azul-principal);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: var(--transicao);
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2.5px;
+            background: var(--vermelho-principal);
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--vermelho-principal);
+            background: rgba(192, 57, 43, 0.05);
+        }
+
+        .nav-links a:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Botão CTA na nav */
+        .btn-nav {
+            background: var(--vermelho-principal) !important;
+            color: var(--branco) !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: 25px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px;
+            transition: var(--transicao) !important;
+            white-space: nowrap;
+        }
+
+        .btn-nav:hover {
+            background: var(--azul-principal) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 60, 94, 0.35);
+        }
+
+        .btn-nav::after {
+            display: none !important;
+        }
+
+        /* ==================== MENU HAMBÚRGUER ==================== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .hamburger .bar {
+            width: 28px;
+            height: 3px;
+            background: var(--azul-principal);
+            border-radius: 3px;
+            transition: var(--transicao);
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+            background: var(--vermelho-principal);
+        }
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+            background: var(--vermelho-principal);
+        }
+
+        /* ==================== HERO / CARROSSEL ==================== */
+        .hero {
+            margin-top: 75px;
+            position: relative;
+            overflow: hidden;
+            height: 550px;
+            background: var(--azul-principal);
+        }
+
+        .carrossel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carrossel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carrossel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Overlays com gradiente para cada slide */
+        .slide-1 .slide-bg {
+            background: linear-gradient(135deg, #1A3C5E 0%, #2C5F8A 40%, #C0392B 100%);
+        }
+        .slide-2 .slide-bg {
+            background: linear-gradient(135deg, #C0392B 0%, #922B21 30%, #1A3C5E 100%);
+        }
+        .slide-3 .slide-bg {
+            background: linear-gradient(135deg, #2C5F8A 0%, #1A3C5E 50%, #E74C3C 100%);
+        }
+
+        /* Padrão geométrico decorativo nos slides */
+        .slide-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+        }
+
+        .slide-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 255, 255, 0.015) 30px, rgba(255, 255, 255, 0.015) 31px),
+                repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(255, 255, 255, 0.015) 30px, rgba(255, 255, 255, 0.015) 31px);
+        }
+
+        .slide-conteudo {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--branco);
+            max-width: 700px;
+            padding: 2rem;
+        }
+
+        .slide-conteudo .icone-slide {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: floatIcon 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes floatIcon {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .slide-conteudo h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+        }
+
+        .slide-conteudo p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            background: var(--branco);
+            color: var(--vermelho-principal);
+            padding: 0.9rem 2.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: var(--transicao);
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hero:hover {
+            background: var(--azul-principal);
+            color: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Controles do carrossel */
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: var(--branco);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transicao);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carrossel-btn:hover {
+            background: var(--branco);
+            color: var(--vermelho-principal);
+            border-color: var(--branco);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .carrossel-btn.prev {
+            left: 20px;
+        }
+        .carrossel-btn.next {
+            right: 20px;
+        }
+
+        /* Indicadores (bolinhas) */
+        .carrossel-indicadores {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            gap: 10px;
+        }
+
+        .carrossel-indicadores span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transicao);
+            border: 2px solid transparent;
+        }
+
+        .carrossel-indicadores span.active {
+            background: var(--branco);
+            border-color: var(--vermelho-principal);
+            transform: scale(1.3);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==================== SEÇÃO SERVIÇOS ==================== */
+        .servicos {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header .tag {
+            display: inline-block;
+            background: rgba(192, 57, 43, 0.1);
+            color: var(--vermelho-principal);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-header h2 {
+            font-size: 2.3rem;
+            color: var(--azul-principal);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header .linha-decorativa {
+            width: 60px;
+            height: 3px;
+            background: var(--vermelho-principal);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Cards com animação hover */
+        .card-servico {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 2rem 1.8rem;
+            text-align: center;
+            box-shadow: var(--sombra-card);
+            transition: var(--transicao-lenta);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-servico::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vermelho-principal), var(--azul-claro));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card-servico:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-card-hover);
+            border-color: rgba(192, 57, 43, 0.15);
+        }
+
+        .card-servico:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icone {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.3rem;
+            transition: var(--transicao-lenta);
+            background: rgba(26, 60, 94, 0.08);
+            color: var(--azul-principal);
+        }
+
+        .card-servico:hover .card-icone {
+            background: var(--vermelho-principal);
+            color: var(--branco);
+            transform: rotateY(180deg);
+            box-shadow: 0 8px 25px rgba(192, 57, 43, 0.35);
+        }
+
+        .card-servico h3 {
+            font-size: 1.2rem;
+            color: var(--azul-principal);
+            margin-bottom: 0.6rem;
+            transition: var(--transicao);
+        }
+
+        .card-servico:hover h3 {
+            color: var(--vermelho-principal);
+        }
+
+        .card-servico p {
+            color: var(--cinza-texto);
+            font-size: 0.95rem;
+        }
+
+        /* ==================== SEÇÃO DIFERENCIAIS ==================== */
+        .diferenciais {
+            background: var(--cinza-claro);
+            padding: 5rem 1.5rem;
+        }
+
+        .diferenciais-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .diferencial-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            transition: var(--transicao-lenta);
+            border-radius: 12px;
+            cursor: default;
+        }
+
+        .diferencial-item:hover {
+            background: var(--branco);
+            box-shadow: var(--sombra-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .diferencial-item .dif-icone {
+            font-size: 2.5rem;
+            color: var(--azul-claro);
+            margin-bottom: 1rem;
+            transition: var(--transicao);
+            display: inline-block;
+        }
+
+        .diferencial-item:hover .dif-icone {
+            color: var(--vermelho-principal);
+            transform: scale(1.2);
+            animation: pulse 0.6s ease;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        .diferencial-item h4 {
+            color: var(--azul-principal);
+            margin-bottom: 0.5rem;
+        }
+        .diferencial-item p {
+            color: var(--cinza-texto);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== SEÇÃO CTA / CONTATO ==================== */
+        .cta-contato {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, #1e4d75 50%, var(--vermelho-escuro) 100%);
+            border-radius: 20px;
+            padding: 3.5rem 2rem;
+            color: var(--branco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+        }
+
+        .cta-box>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .btn-cta {
+            display: inline-block;
+            background: var(--branco);
+            color: var(--vermelho-principal);
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: var(--transicao);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-cta:hover {
+            background: var(--vermelho-claro);
+            color: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--azul-principal);
+            color: var(--branco);
+            padding: 3rem 1.5rem 1.5rem;
+        }
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            position: relative;
+            display: inline-block;
+        }
+        .footer-col h4::after {
+            content: '';
+            display: block;
+            width: 35px;
+            height: 2px;
+            background: var(--vermelho-claro);
+            margin-top: 5px;
+            border-radius: 1px;
+        }
+        .footer-col p,
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.4rem;
+            transition: var(--transicao);
+        }
+        .footer-col a:hover {
+            color: var(--branco);
+            padding-left: 5px;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==================== BOTÃO WHATSAPP FLUTUANTE ==================== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            background: #25D366;
+            color: #fff;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transicao);
+            text-decoration: none;
+            animation: pulseWpp 2s infinite;
+        }
+        @keyframes pulseWpp {
+            0%,
+            100% {
+                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 35px rgba(37, 211, 102, 0.7);
+                transform: scale(1.05);
+            }
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ==================== RESPONSIVIDADE ==================== */
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .slide-conteudo h1 {
+                font-size: 2.2rem;
+            }
+            .slide-conteudo p {
+                font-size: 1rem;
+            }
+            .hero {
+                height: 420px;
+            }
+            .section-header h2 {
+                font-size: 1.9rem;
+            }
+        }
+
+        /* Smartphone */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--branco);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 0.8rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.8rem 1rem;
+                font-size: 1.05rem;
+                border-radius: 8px;
+            }
+
+            .btn-nav {
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            /* Overlay escuro quando menu aberto */
+            .nav-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+            .nav-overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .hero {
+                height: 380px;
+                margin-top: 68px;
+            }
+            .slide-conteudo h1 {
+                font-size: 1.7rem;
+            }
+            .slide-conteudo p {
+                font-size: 0.9rem;
+            }
+            .carrossel-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            .carrossel-btn.prev {
+                left: 8px;
+            }
+            .carrossel-btn.next {
+                right: 8px;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-box {
+                padding: 2.5rem 1.5rem;
+            }
+            .cta-box h2 {
+                font-size: 1.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 320px;
+            }
+            .slide-conteudo h1 {
+                font-size: 1.4rem;
+            }
+            .slide-conteudo .icone-slide {
+                font-size: 2.5rem;
+            }
+            .btn-hero {
+                padding: 0.7rem 1.6rem;
+                font-size: 0.9rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <div class="logo-icone">L</div>
+                <div class="logo-texto">LFM<span>Montagem</span></div>
+            </a>
+
+            <!-- Overlay para mobile -->
+            <div class="nav-overlay" id="navOverlay"></div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="fecharMenu()">Início</a></li>
+                <li><a href="#servicos" onclick="fecharMenu()">Serviços</a></li>
+                <li><a href="#diferenciais" onclick="fecharMenu()">Diferenciais</a></li>
+                <li><a href="#contato" onclick="fecharMenu()">Contato</a></li>
+                <li><a href="#contato" class="btn-nav" onclick="fecharMenu()">Solicitar Orçamento</a></li>
+            </ul>
+
+            <!-- Hamburger -->
+            <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== HERO / CARROSSEL ==================== -->
+    <section class="hero" id="home">
+        <div class="carrossel-container" id="carrossel">
+
+            <!-- Slide 1 -->
+            <div class="carrossel-slide slide-1 active" data-index="0">
+                <div class="slide-bg"></div>
+                <div class="slide-conteudo">
+                    <span class="icone-slide">🛠️</span>
+                    <h1>Montagem de Móveis com Excelência</h1>
+                    <p>Profissionais qualificados para montar seus móveis com agilidade e perfeição.</p>
+                    <a href="#contato" class="btn-hero">Solicitar Orçamento</a>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carrossel-slide slide-2" data-index="1">
+                <div class="slide-bg"></div>
+                <div class="slide-conteudo">
+                    <span class="icone-slide">🏠</span>
+                    <h1>Atendimento Residencial e Empresarial</h1>
+                    <p>Do home office ao escritório corporativo, estamos prontos para atender.</p>
+                    <a href="#contato" class="btn-hero">Fale Conosco</a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carrossel-slide slide-3" data-index="2">
+                <div class="slide-bg"></div>
+                <div class="slide-conteudo">
+                    <span class="icone-slide">⭐</span>
+                    <h1>Garantia e Confiança</h1>
+                    <p>Mais de 5.000 clientes satisfeitos. Nota 4,9 nas avaliações.</p>
+                    <a href="#contato" class="btn-hero">Solicitar Agora</a>
+                </div>
+            </div>
+
+            <!-- Botões de navegação -->
+            <button class="carrossel-btn prev" id="btnPrev" aria-label="Slide anterior">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="carrossel-btn next" id="btnNext" aria-label="Próximo slide">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Indicadores -->
+            <div class="carrossel-indicadores" id="indicadores">
+                <span class="active" data-index="0"></span>
+                <span data-index="1"></span>
+                <span data-index="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEÇÃO SERVIÇOS ==================== -->
+    <section class="servicos" id="servicos">
+        <div class="section-header">
+            <span class="tag">Nossos Serviços</span>
+            <h2>O que fazemos</h2>
+            <div class="linha-decorativa"></div>
+        </div>
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card-servico">
+                <div class="card-icone"><i class="fa-solid fa-couch"></i></div>
+                <h3>Montagem de Móveis</h3>
+                <p>Armários, racks, estantes, camas, mesas e muito mais. Montagem precisa e rápida.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card-servico">
+                <div class="card-icone"><i class="fa-solid fa-kitchen-set"></i></div>
+                <h3>Planejados e Cozinhas</h3>
+                <p>Montagem de móveis planejados e cozinhas completas com acabamento impecável.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card-servico">
+                <div class="card-icone"><i class="fa-solid fa-building"></i></div>
+                <h3>Móveis Corporativos</h3>
+                <p>Estações de trabalho, cadeiras ergonômicas e todo mobiliário empresarial.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="card-servico">
+                <div class="card-icone"><i class="fa-solid fa-truck-fast"></i></div>
+                <h3>Desmontagem e Transporte</h3>
+                <p>Desmontamos com cuidado e transportamos seus móveis com segurança.</p>
+            </div>
+            <!-- Card 5 -->
+            <div class="card-servico">
+                <div class="card-icone"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                <h3>Reparos e Ajustes</h3>
+                <p>Consertos, regulagens e manutenção para deixar tudo em perfeito estado.</p>
+            </div>
+            <!-- Card 6 -->
+            <div class="card-servico">
+                <div class="card-icone"><i class="fa-solid fa-clock"></i></div>
+                <h3>Atendimento Emergencial</h3>
+                <p>Precisou para ontem? Temos atendimento expresso para urgências.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEÇÃO DIFERENCIAIS ==================== -->
+    <section class="diferenciais" id="diferenciais">
+        <div class="section-header">
+            <span class="tag">Por que nos escolher</span>
+            <h2>Nossos Diferenciais</h2>
+            <div class="linha-decorativa"></div>
+        </div>
+        <div class="diferenciais-container">
+            <div class="diferencial-item">
+                <span class="dif-icone"><i class="fa-solid fa-shield-halved"></i></span>
+                <h4>Garantia de 90 dias</h4>
+                <p>Confiança total no nosso serviço com garantia estendida.</p>
+            </div>
+            <div class="diferencial-item">
+                <span class="dif-icone"><i class="fa-solid fa-user-gear"></i></span>
+                <h4>Equipe Capacitada</h4>
+                <p>Profissionais treinados e certificados para cada tipo de móvel.</p>
+            </div>
+            <div class="diferencial-item">
+                <span class="dif-icone"><i class="fa-solid fa-bolt"></i></span>
+                <h4>Agilidade</h4>
+                <p>Agendamento rápido e montagem no prazo combinado.</p>
+            </div>
+            <div class="diferencial-item">
+                <span class="dif-icone"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                <h4>Atendimento Humanizado</h4>
+                <p>Ouvimos suas necessidades e oferecemos a melhor solução.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEÇÃO CTA / CONTATO ==================== -->
+    <section class="cta-contato" id="contato">
+        <div class="cta-box">
+            <h2>Pronto para montar seus móveis?</h2>
+            <p>Solicite um orçamento rápido e sem compromisso. Respondemos em até 15 minutos!</p>
+            <a href="https://wa.me/556593076719?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="btn-cta">
+                <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>LFM montagens</h4>
+                <p>Especialistas em montagem de móveis desde 2015. Qualidade e confiança em cada serviço.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <a href="#home">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#diferenciais">Diferenciais</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p><i class="fa-solid fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fa-solid fa-envelope"></i> contato@LFMmontagem.com.br</p>
+                <p><i class="fa-solid fa-location-dot"></i> Cuiabá - MT</p>
+            </div>
+            <div class="footer-col">
+                <h4>Redes Sociais</h4>
+                <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="#"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LFM montagens. Todos os direitos reservados. | Site desenvolvido com ❤️</p>
+        </div>
+    </footer>
+
+    <!-- ==================== BOTÃO WHATSAPP FLUTUANTE ==================== -->
+    <a href="https://wa.me/556593076719?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        (function() {
+            // ========== ELEMENTOS DO DOM ==========
+            const header = document.getElementById('header');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const navOverlay = document.getElementById('navOverlay');
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const indicadoresContainer = document.getElementById('indicadores');
+            const slides = document.querySelectorAll('.carrossel-slide');
+            const indicadores = document.querySelectorAll('#indicadores span');
+
+            let slideAtual = 0;
+            let intervaloAutoPlay;
+            const tempoAutoPlay = 5000; // 5 segundos
+
+            // ========== FUNÇÕES DO MENU MOBILE ==========
+            function abrirMenu() {
+                navLinks.classList.add('active');
+                navOverlay.classList.add('active');
+                hamburger.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function fecharMenu() {
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    fecharMenu();
+                } else {
+                    abrirMenu();
+                }
+            });
+
+            navOverlay.addEventListener('click', fecharMenu);
+
+            // Fechar menu ao pressionar tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    fecharMenu();
+                }
+            });
+
+            // Expõe fecharMenu globalmente para os links onclick
+            window.fecharMenu = fecharMenu;
+
+            // ========== EFEITO SCROLL NO HEADER ==========
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ========== FUNÇÕES DO CARROSSEL ==========
+            function irParaSlide(index) {
+                // Remove active de todos
+                slides.forEach(s => s.classList.remove('active'));
+                indicadores.forEach(i => i.classList.remove('active'));
+
+                // Atualiza índice com wrap-around
+                if (index >= slides.length) slideAtual = 0;
+                else if (index < 0) slideAtual = slides.length - 1;
+                else slideAtual = index;
+
+                // Ativa o slide e indicador corretos
+                slides[slideAtual].classList.add('active');
+                indicadores[slideAtual].classList.add('active');
+            }
+
+            function proximoSlide() {
+                irParaSlide(slideAtual + 1);
+            }
+
+            function slideAnterior() {
+                irParaSlide(slideAtual - 1);
+            }
+
+            function iniciarAutoPlay() {
+                pararAutoPlay();
+                intervaloAutoPlay = setInterval(proximoSlide, tempoAutoPlay);
+            }
+
+            function pararAutoPlay() {
+                if (intervaloAutoPlay) {
+                    clearInterval(intervaloAutoPlay);
+                    intervaloAutoPlay = null;
+                }
+            }
+
+            // Event listeners dos botões
+            btnPrev.addEventListener('click', () => {
+                slideAnterior();
+                iniciarAutoPlay(); // Reinicia o timer
+            });
+
+            btnNext.addEventListener('click', () => {
+                proximoSlide();
+                iniciarAutoPlay();
+            });
+
+            // Event listeners dos indicadores
+            indicadores.forEach(ind => {
+                ind.addEventListener('click', () => {
+                    const index = parseInt(ind.getAttribute('data-index'));
+                    irParaSlide(index);
+                    iniciarAutoPlay();
+                });
+            });
+
+            // Pausa autoplay ao passar o mouse no carrossel
+            const carrosselContainer = document.getElementById('carrossel');
+            carrosselContainer.addEventListener('mouseenter', pararAutoPlay);
+            carrosselContainer.addEventListener('mouseleave', iniciarAutoPlay);
+
+            // Suporte a touch/swipe para mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carrosselContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                pararAutoPlay();
+            }, { passive: true });
+
+            carrosselContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        proximoSlide();
+                    } else {
+                        slideAnterior();
+                    }
+                }
+                iniciarAutoPlay();
+            });
+
+            // Inicia o autoplay
+            iniciarAutoPlay();
+
+            // ========== SCROLL SUAVE PARA LINKS ANCORA ==========
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+
+                    const alvo = document.querySelector(href);
+                    if (alvo) {
+                        e.preventDefault();
+                        const offsetTop = alvo.getBoundingClientRect().top + window.pageYOffset -
+                            80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            console.log('🚀 LFM montagens - Site carregado com sucesso!');
+            console.log('📱 Responsivo | 🎠 Carrossel ativo | 🎨 Cores: Vermelho + Azul + Branco');
+            console.log('💡 Dica: Passe o mouse nos cards e nos itens de diferenciais para ver as animações!');
+        })();
+    </script>
+</body>
+</html>
